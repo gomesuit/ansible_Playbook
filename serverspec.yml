@@ -7,3 +7,6 @@
 
     - name: be sure serverspec is installed
       gem: name=serverspec user_install=False
+
+    - name: be sure rake is installed
+      gem: name=rake user_install=False
