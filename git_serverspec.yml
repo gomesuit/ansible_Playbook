@@ -1,0 +1,6 @@
+---
+- hosts: common-servers
+  sudo: yes
+  tasks:
+    - git: repo=https://github.com/gomesuit/serverspecFile.git
+           dest=/home/vagrant/serverspecFile
