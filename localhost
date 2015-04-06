@@ -1,1 +1,2 @@
 serverspec-server ansible_connection=local
+common-servers ansible_connection=local
