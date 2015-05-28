@@ -3,3 +3,6 @@
 
 [serverspec-server]
 192.168.33.11
+
+[redis-cluster-server]
+192.168.33.11
