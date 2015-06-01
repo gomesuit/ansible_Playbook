@@ -8,6 +8,9 @@
     zookeeper_data: data
     tmp_dir: /tmp
   tasks:
+    - name: be sure git is installed
+      yum: name=java-1.7.0-openjdk state=installed
+
     - name: download install src
       get_url: url=http://www.apache.org/dist/zookeeper/zookeeper-3.4.6/zookeeper-3.4.6.tar.gz dest={{ tmp_dir }}
 
@@ -20,5 +23,8 @@
     - name: set conf
       template: src=template/zoo.cfg.j2 dest={{ zookeeper_dir }}/conf/zoo.cfg
 
+#    - name: export path
+#      lineinfile: dest=/root/.bash_profile line='export PATH={{ zookeeper_dir }}/bin:$PATH'
+
     - name: export path
-      lineinfile: dest=/root/.bash_profile line='export PATH={{ zookeeper_dir }}/bin:$PATH'
+      lineinfile: dest=/root/.bash_profile line='export ZOOKEEPER_HOME={{ zookeeper_dir }}'
