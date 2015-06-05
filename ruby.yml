@@ -6,6 +6,13 @@
     tmp_dir: /tmp
     ruby_src_dir: /tmp/ruby-2.2.2
   tasks:
+    - name: install yum packages
+      yum: name={{ item }} state=latest
+      with_items:
+        - libffi-devel
+        - zlib-devel
+        - openssl-devel
+
     - name: check ruby install
       command: /usr/local/ruby/bin/ruby --version
       ignore_errors: True
@@ -36,13 +43,23 @@
     - name: export path
       lineinfile: dest=/root/.bash_profile line='export PATH={{ ruby_home }}/bin:$PATH'
 
-#    - name: start redis-server
-#      shell: chdir={{ redis_dir }}/{{ redis_port }} /usr/local/bin/redis-server redis.conf &>/dev/null &
+    - name: create openssl Makefile
+      command: chdir={{ ruby_src_dir }}/ext/openssl {{ ruby_home }}/bin/ruby extconf.rb
 
-    - name: install yum packages
-      yum: name={{ item }} state=latest
-      with_items:
-        - libffi-devel
-        - zlib-devel
-        - openssl-devel
+    - name: debug to openssl Makefile
+      command: chdir={{ ruby_src_dir }}/ext/openssl sed -i -e "1i top_srcdir = {{ ruby_src_dir }}" Makefile
 
+    - name: make ruby openssl
+      command: chdir={{ ruby_src_dir }}/ext/openssl make
+
+    - name: make install ruby openssl 
+      command: chdir={{ ruby_src_dir }}/ext/openssl make install
+
+    - name: create zlib Makefile
+      command: chdir={{ ruby_src_dir }}/ext/zlib {{ ruby_home }}/bin/ruby extconf.rb
+
+    - name: make ruby zlib
+      command: chdir={{ ruby_src_dir }}/ext/zlib make
+
+    - name: make install ruby zlib
+      command: chdir={{ ruby_src_dir }}/ext/zlib make install

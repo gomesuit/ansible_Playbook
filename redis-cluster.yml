@@ -38,3 +38,6 @@
 
 #    - name: start redis-server
 #      shell: chdir={{ redis_dir }}/{{ redis_port }} /usr/local/bin/redis-server redis.conf &>/dev/null &
+
+    - name: be sure redis is installed
+      gem: name=redis user_install=False
