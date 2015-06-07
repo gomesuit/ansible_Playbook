@@ -43,3 +43,12 @@
         PATH: "{{ ghc_home }}/bin:{{ ansible_env.PATH }}"
         PREFIX: "{{ cabal_home }}"
 
+    - name: export path
+      lineinfile: dest=/root/.bash_profile line='export PATH={{ cabal_home }}/bin:$PATH'
+
+    - name: download cabal install src
+      get_url: url=https://www.haskell.org/platform/download/2014.2.0.0/haskell-platform-2014.2.0.0-srcdist.tar.gz dest={{ tmp_dir }}
+
+
+
+
