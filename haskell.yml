@@ -14,6 +14,7 @@
       yum: name={{ item }} state=latest
       with_items:
         - gmp-devel
+        - zlib-devel
 
     - name: download ghc install src
       get_url: url=https://www.haskell.org/ghc/dist/7.8.4/ghc-7.8.4-x86_64-unknown-linux-centos65.tar.xz dest={{ tmp_dir }}
@@ -37,6 +38,8 @@
       unarchive: src={{ tmp_dir }}/cabal-install-1.22.4.0.tar.gz dest={{ tmp_dir }}
 
     - name: install cabal
-      command: chdir={{ cabal_src_dir }} PREFIX={{ cabal_home }} ./bootstrap.sh
-
+      command: chdir={{ cabal_src_dir }} ./bootstrap.sh
+      environment:
+        PATH: "{{ ghc_home }}/bin:{{ ansible_env.PATH }}"
+        PREFIX: "{{ cabal_home }}"
 
