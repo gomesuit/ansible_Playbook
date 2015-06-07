@@ -1,0 +1,42 @@
+---
+- hosts: common-servers 
+  sudo: yes
+  vars:
+    haskell_home: /usr/local/haskell
+    tmp_dir: /tmp
+    haskell_src_dir: /tmp/haskell
+    ghc_home: /usr/local/haskell/ghc
+    ghc_src_dir: /tmp/ghc-7.8.4
+    cabal_home: /usr/local/haskell/cabal
+    cabal_src_dir: /tmp/cabal-install-1.22.4.0
+  tasks:
+    - name: install yum packages
+      yum: name={{ item }} state=latest
+      with_items:
+        - gmp-devel
+
+    - name: download ghc install src
+      get_url: url=https://www.haskell.org/ghc/dist/7.8.4/ghc-7.8.4-x86_64-unknown-linux-centos65.tar.xz dest={{ tmp_dir }}
+
+    - name: unarchive src file
+      unarchive: src={{ tmp_dir }}/ghc-7.8.4-x86_64-unknown-linux-centos65.tar.xz dest={{ tmp_dir }}
+
+    - name: configure ghc src
+      command: chdir={{ ghc_src_dir }} ./configure --prefix={{ ghc_home }}
+
+    - name: install ghc
+      command: chdir={{ ghc_src_dir }} make install
+
+    - name: export path
+      lineinfile: dest=/root/.bash_profile line='export PATH={{ ghc_home }}/bin:$PATH'
+
+    - name: download cabal install src
+      get_url: url=https://www.haskell.org/cabal/release/cabal-install-1.22.4.0/cabal-install-1.22.4.0.tar.gz dest={{ tmp_dir }}
+
+    - name: unarchive src file
+      unarchive: src={{ tmp_dir }}/cabal-install-1.22.4.0.tar.gz dest={{ tmp_dir }}
+
+    - name: install cabal
+      command: chdir={{ cabal_src_dir }} PREFIX={{ cabal_home }} ./bootstrap.sh
+
+
