@@ -64,6 +64,9 @@
 #      environment:
 #        PATH: "{{ cabal_home }}/bin:{{ ghc_home }}/bin:{{ ansible_env.PATH }}"
 
+    - name: cabal install happy
+      command: chdir={{ haskell_platform_src_dir }} cabal install happy
+
     - name: install haskell-platform
       command: chdir={{ haskell_platform_src_dir }} cabal install --prefix={{ haskell_platform_home }}
       environment:
