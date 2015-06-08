@@ -17,6 +17,8 @@
       with_items:
         - gmp-devel
         - zlib-devel
+        - freeglut
+        - freeglut-devel
 
     - name: download ghc install src
       get_url: url=https://www.haskell.org/ghc/dist/7.8.4/ghc-7.8.4-x86_64-unknown-linux-centos65.tar.xz dest={{ tmp_dir }}
@@ -57,8 +59,13 @@
     - name: gub fix
       replace: dest={{ haskell_platform_src_dir }}/hptool/hptool.cabal regexp='shake' replace='shake < 0.15'
 
+#    - name: install haskell-platform
+#      command: chdir={{ haskell_platform_src_dir }} ./platform.sh --prefix={{ haskell_platform_home }}
+#      environment:
+#        PATH: "{{ cabal_home }}/bin:{{ ghc_home }}/bin:{{ ansible_env.PATH }}"
+
     - name: install haskell-platform
-      command: chdir={{ haskell_platform_src_dir }} ./platform.sh --prefix={{ haskell_platform_home }}
+      command: chdir={{ haskell_platform_src_dir }} cabal install --prefix={{ haskell_platform_home }}
       environment:
         PATH: "{{ cabal_home }}/bin:{{ ghc_home }}/bin:{{ ansible_env.PATH }}"
 
