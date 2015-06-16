@@ -1,0 +1,5 @@
+---
+- hosts: common-servers 
+  sudo: yes
+  roles:
+    - common

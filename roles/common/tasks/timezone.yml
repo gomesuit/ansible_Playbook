@@ -1,0 +1,7 @@
+---
+- name: be sure timezone is tokyo
+  copy: src=/usr/share/zoneinfo/Asia/Tokyo dest=/etc/localtime
+
+handlers:
+- name: restart crond
+  service: name=crond state=restarted
