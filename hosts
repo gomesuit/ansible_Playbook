@@ -7,5 +7,4 @@
 [redis-cluster-server]
 192.168.33.11
 
-[localhost:vars]
-ansible_connection=local
+localhost ansible_connection=local
