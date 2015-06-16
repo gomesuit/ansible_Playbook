@@ -5,5 +5,6 @@
     - common
     - serverspec
   tasks:
-    - git: repo=https://github.com/gomesuit/serverspecFile.git
+  	- name: git clone serverspec file
+      git: repo=https://github.com/gomesuit/serverspecFile.git
            dest=/home/vagrant/serverspecFile
