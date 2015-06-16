@@ -26,7 +26,7 @@
   file: path={{ redis_dir }}/{{ redis_port }} state=directory
 
 - name: set conf
-  template: src=template/redis.conf.j2 dest={{ redis_dir }}/{{ redis_port }}/redis.conf
+  template: src=redis.conf.j2 dest={{ redis_dir }}/{{ redis_port }}/redis.conf
 
 #    - name: start redis-server
 #      shell: chdir={{ redis_dir }}/{{ redis_port }} /usr/local/bin/redis-server redis.conf &>/dev/null &

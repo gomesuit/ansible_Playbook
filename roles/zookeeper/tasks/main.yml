@@ -12,7 +12,7 @@
   file: path={{ zookeeper_dir }}/{{ zookeeper_data }} state=directory
 
 - name: set conf
-  template: src=template/zoo.cfg.j2 dest={{ zookeeper_dir }}/conf/zoo.cfg
+  template: src=zoo.cfg.j2 dest={{ zookeeper_dir }}/conf/zoo.cfg
 
 #    - name: export path
 #      lineinfile: dest=/root/.bash_profile line='export PATH={{ zookeeper_dir }}/bin:$PATH'
