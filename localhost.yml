@@ -4,3 +4,6 @@
   roles:
     - common
     - serverspec
+  tasks:
+    - git: repo=https://github.com/gomesuit/serverspecFile.git
+           dest=/home/vagrant/serverspecFile
