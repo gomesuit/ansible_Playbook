@@ -4,7 +4,7 @@
   roles:
     - common
     - serverspec
-  tasks:
-  	- name: git clone serverspec file
-      git: repo=https://github.com/gomesuit/serverspecFile.git
-           dest=/home/vagrant/serverspecFile
+#  tasks:
+#  	- name: git clone serverspec file
+#      git: repo=https://github.com/gomesuit/serverspecFile.git
+#           dest=/home/vagrant/serverspecFile
