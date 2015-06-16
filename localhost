@@ -1,4 +1,0 @@
-serverspec-server ansible_connection=local
-common-servers ansible_connection=local
-redis-cluster-server ansible_connection=local
-zookeeper-server ansible_connection=local
