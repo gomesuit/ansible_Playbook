@@ -1,0 +1,259 @@
+---
+- name: gem install bundler
+  gem: name=bundler user_install=False
+- name: gem install test-kitchen
+  gem: name=bundler user_install=False
+
+
+
+
+- name: install java-1.7.0
+  yum: name=java-1.7.0-openjdk state=installed
+
+- name: download install src
+  get_url: url=http://www.apache.org/dist/zookeeper/zookeeper-3.4.6/zookeeper-3.4.6.tar.gz dest={{ tmp_dir }}
+
+- name: unarchive src file
+  unarchive: src={{ tmp_dir }}/zookeeper-3.4.6.tar.gz dest={{ home_dir }}
+
+- name: create a data directory
+  file: path={{ zookeeper_dir }}/{{ zookeeper_data }} state=directory
+
+- name: set conf
+  template: src=zoo.cfg.j2 dest={{ zookeeper_dir }}/conf/zoo.cfg
+
+#    - name: export path
+#      lineinfile: dest=/root/.bash_profile line='export PATH={{ zookeeper_dir }}/bin:$PATH'
+
+- name: export path
+  lineinfile: dest=/root/.bash_profile line='export ZOOKEEPER_HOME={{ zookeeper_dir }}'
+
+
+    1  cd /home/vagrant/
+    2  ll
+    3  cd ansible_Playbook/
+    4  ll
+    5  vim localhost.yml 
+    6  ansible-playbook -i hosts localhost.yml 
+    7  exit
+    8  top
+    9  yum install strace
+   10  cd /home/vagrant/
+   11  ll
+   12  cd ansible_Playbook/
+   13  ll
+   14  gem install ansible_spec
+   15  git --help
+   16  git help clone
+   17  git submodule add https://github.com/gomesuit/serverspecFile.git
+   18  ll
+   19  git status
+   20  cd serverspecFile
+   21  git status
+   22  cd ../
+   23  ls -la
+   24  vim .gitmodules 
+   25  cd serverspecFile/
+   26  ll
+   27  git status
+   28  cd ../
+   29  ll
+   30  git status
+   31  cd serverspecFile/
+   32  ll
+   33  vim Rakefile 
+   34  cd ../../
+   35  ll
+   36  cd serverspecFile/
+   37  ll
+   38  vim Rakefile 
+   39  cd spec/
+   40  ll
+   41  vim spec_helper.rb 
+   42  cd ../
+   43  ll
+   44  cd ../
+   45  ll
+   46  cd ansible_Playbook/
+   47  ll
+   48  git status
+   49  rm -rf .gitmodules
+   50  rm -rf serverspecFile
+   51  ll
+   52  git status
+   53  ll
+   54  vim localhost.yml 
+   55  ruby -v
+   56  vim localhost.yml 
+   57  ansiblespec-init 
+   58  vim .ansiblespec 
+   59  ll
+   60  ansible-playbook -i hosts localhost.yml 
+   61  rake -T
+   62  rake serverspec:test
+   63  ll
+   64  cd spec/
+   65  ll
+   66  vim spec_helper.rb 
+   67  cd ../
+   68  rake serverspec:test
+   69  ll
+   70  cd roles/
+   71  ll
+   72  cd ruby
+   73  ll
+   74  cd ../../
+   75  ll
+   76  gem install bundler
+   77  ll
+   78  history 
+   79  gem install test-kichen
+   80  gem install test-kitchen
+   81  cd ..
+   82  mkdir test
+   83  cd test/
+   84  ll
+   85  vim Gemfile
+   86  vim Gemfile 
+   87  bundle install
+   88  ll
+   89  bundle exec kitchen --help
+   90  bundle exec kitchen help init
+   91  bundle exec kitchen init
+   92  vim Gemfile
+   93  bundle install
+   94  ll
+   95  ll test/
+   96  ll
+   97  tree
+   98  cd test/integration/default/
+   99  ll
+  100  cd ../
+  101  ll
+  102  cd ../
+  103  ll
+  104  cd ../
+  105  ll
+  106  bundle exec kitchen init
+  107  ll
+  108  vim .kitchen
+  109  ll
+  110  ls -la
+  111  vim .kitchen.yml 
+  112  ll
+  113  ls -la
+  114  cd .kitchen
+  115  ll
+  116  cd ../
+  117  ll
+  118  vim .kitchen.yml 
+  119  cp -r ../ansible_Playbook/roles ./
+  120  ll
+  121  vim site.yml
+  122  ll
+  123  cd test/integration/default/
+  124  cp -r /home/vagrant/serverspecFile/spec ./
+  125  ll
+  126  mv spec serverspec
+  127  cd ../../
+  128  ll
+  129  cd ../
+  130  ll
+  131  bundle exec kitchen create
+  132  bundle exec kitchen test
+  133  vim Gemfile
+  134  rm Gemfile.lock 
+  135  bundle install
+  136  gem kist kitchen-vagrant
+  137  gem list kitchen-vagrant
+  138  vim Gemfile
+  139  vim Gemfile.lock 
+  140  bundle exec kitchen test
+  141  vim .kitchen/logs/kitchen.log
+  142  yum list | grep VirtualBox
+  143  yum list | grep virtual
+  144  wget http://download.virtualbox.org/virtualbox/rpm/el/virtualbox.repo -O /etc/yum.repos.d/virtualbox.repo
+  145  vim /etc/yum.repos.d/virtualbox.repo
+  146  yum list | grep virtual
+  147  yum install VirtualBox-4.3.x86_64
+  148  df
+  149  yum install https://dl.bintray.com/mitchellh/vagrant/vagrant_1.7.2_x86_64.rpm
+  150  vagrant -v
+  151  ll
+  152  bundle exec kitchen create
+  153  vim .kitchen/logs/kitchen.log
+  154  bundle exec kitchen test
+  155  bundle exec kitchen diagnose --all
+  156  vim Gemfile
+  157  gem install kitchen-vagrant
+  158  bundle exec kitchen diagnose --all
+  159  bundle exec kitchen test
+  160  kitchen test
+  161  kitchen create
+  162  ll
+  163  vim .kitchen.yml 
+  164  df
+  165  vim site.yml 
+  166  cp ../ansible_Playbook/hosts ./
+  167  vim hosts 
+  168  vim site.yml 
+  169  kitchen create
+  170  vim .kitchen/logs/kitchen.log 
+  171  VBoxManage
+  172  vim .kitchen/logs/kitchen.log 
+  173  VBoxManage --version
+  174  /etc/init.d/vboxdrv setup
+  175  vim /var/log/vbox-install.log
+  176  yum update kernel
+  177  yum update
+  178  yum install kernel-devel
+  179  history 
+  180  /etc/init.d/vboxdrv setup
+  181  export KERN_DIR=/usr/src/kernels/2.6.32-504.23.4.el6.x86_64.debug/
+  182   VBoxManage --version
+  183  /etc/init.d/vboxdrv setup
+  184  vim /var/log/vbox-install.log
+  185  cd /home/vagrant/
+  186  ll
+  187  cd test/
+  188  history 
+  189  /etc/init.d/vboxdrv setup
+  190  export KERN_DIR=/usr/src/kernels/2.6.32-504.23.4.el6.x86_64.debug/
+  191  /etc/init.d/vboxdrv setup
+  192  /etc/init.d/vboxdrv dmesg
+  193  /etc/init.d/vboxdrv setup
+  194  uname -r
+  195  yum info dkms
+  196  yum install yum info dkms
+  197  yum install dkms
+  198  yum install VirtualBox-4.3
+  199  yum remove VirtualBox-4.3
+  200  yum install VirtualBox-4.3
+  201  echo $KERN_DIR 
+  202  exit
+  203  yum remove VirtualBox-4.3          
+  204  yum install VirtualBox-4.3          
+  205  cat /etc/passwd
+  206  sudo usermod -a -G vboxusers username
+  207  sudo usermod -a -G vboxusers vagrant
+  208  vagrant -version
+  209  vagrant version
+  210  ll
+  211  cd /home/vagrant/
+  212  ll
+  213  cd test/
+  214  ll
+  215  kitchen create
+  216  VBoxManage --version
+  217  cd ../
+  218  ll
+  219  mkdir aaa
+  220  cd aaa
+  221  ll
+  222  vagrant init
+  223  ll
+  224  vagrant up
+  225  VBoxManage --version
+  226  /etc/init.d/vboxdrv setup
+  227  exit
+  228  history 
