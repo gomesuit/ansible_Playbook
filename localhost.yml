@@ -5,6 +5,7 @@
     - common
 #    - serverspec
     - ruby
+    - bundler
     - docker
 #  tasks:
 #  	- name: git clone serverspec file
