@@ -1,0 +1,3 @@
+---
+- name: be sure docker is installed
+  yum: name=docker-io state=installed
