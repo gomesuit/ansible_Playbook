@@ -1,6 +1,6 @@
 ---
 - name: be sure libdevmapper is installed
-  yum: name=libdevmapper.so.1.02 state=installed
+  yum: name=libdevmapper.so.1.02 state=present
   
 - name: be sure docker is installed
-  yum: name=docker-io state=installed
+  yum: name=docker-io state=present

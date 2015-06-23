@@ -1,6 +1,6 @@
 ---
 - name: be sure rubygems is installed
-  yum: name=rubygems state=installed
+  yum: name=rubygems state=present
 
 - name: be sure serverspec is installed
   gem: name=serverspec user_install=False
